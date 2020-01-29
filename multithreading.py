@@ -3,12 +3,15 @@ import time
 
 def wait(n):
 	time.sleep(1)
-	print(f"Waiting...{n}")
+	return f"Waiting...{n}"
 
 start = time.perf_counter()
 
 with ThreadPoolExecutor() as executor:
-	executor.map(wait, range(1,7))
+	results = executor.map(wait, range(1,10))
+
+for r in results:
+	print(r)
 
 end = time.perf_counter()
 
