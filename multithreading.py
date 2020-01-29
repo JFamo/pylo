@@ -1,14 +1,14 @@
 from concurrent.futures import ThreadPoolExecutor
 import time
 
-def wait():
+def wait(n):
 	time.sleep(1)
-	print("Waiting...")
+	print(f"Waiting...{n}")
 
 start = time.perf_counter()
 
-for i in range(6):
-	wait()
+with ThreadPoolExecutor() as executor:
+	executor.map(wait, range(1,7))
 
 end = time.perf_counter()
 
