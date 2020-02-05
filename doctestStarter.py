@@ -93,7 +93,23 @@ def runDoctest(pyfile, docFilename):
     # in accordance to the operating system you're using. 
     # Use the getOSName() function in here. 
     # You will either use python or python3 based on your OS.
-    pass
+    
+    # Setup our command and file
+    command = "" 
+    file = open(docFilename, "w")
+
+    # Write command line command based on OS
+    if(getOSName() == 'Windows'):
+        command = "python -m doctest -v " + pyfile
+    else:
+        command = "python3 -m doctest -v " + pyfile
+
+    # Run command
+    doctest = os.system(command)
+
+    # Save doctest to file
+    file.write(doctest)
+    file.close()
 
 
 # Write the function to get the output of the doctest
