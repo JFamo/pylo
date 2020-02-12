@@ -59,11 +59,12 @@ def filterErrors(strList):
 # It takes in a string that represents 
 # ONE test that failed. 
 def findError(block):
+
     # split the block by '\n', generating. a list of lines
-    pass
+    lines = block.split("\n")
 
     # strip the white space from each line of text in the list
-
+    map(strip(), lines)
 
     # Look for the line that contains 'Error:' in the list of lines.
     # Then, parse the line number that the error occurred on (this will be 
@@ -96,21 +97,15 @@ def runDoctest(pyfile, docFilename):
     
     # Setup our command and file
     command = "" 
-    file = open(docFilename, "w")
 
     # Write command line command based on OS
     if(getOSName() == 'Windows'):
-        command = "python -m doctest -v " + pyfile
+        command = "python -m doctest -v " + pyfile + " > " + docFilename
     else:
-        command = "python3 -m doctest -v " + pyfile
+        command = "python3 -m doctest -v " + pyfile + " > " + docFilename
 
     # Run command
-    doctest = os.system(command)
-
-    # Save doctest to file
-    file.write(doctest)
-    file.close()
-
+    os.system(command)
 
 # Write the function to get the output of the doctest
 # Essentially, you have to read the text file that
@@ -156,7 +151,7 @@ def main():
 #main()
 
 
-
+runDoctest("test.py","out.txt")
 
 
 
