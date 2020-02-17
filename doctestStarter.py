@@ -138,7 +138,7 @@ def getDoctestOutput(docFilename):
     errorlist = filterErrors(splat)
 
     for x in errorlist:
-        tupleforend.append(findFunc(x),findError(x))
+        tupleforend.append((findFunc(x),) + findError(x))
 
     # Return that list of tuples
 
@@ -168,9 +168,6 @@ def main():
 
     return final 
 
-
-
-
 # Uncomment the code below to make your program run.
 
-main()
+print(main())
